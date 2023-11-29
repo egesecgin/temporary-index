@@ -3,28 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blinking and Clickable Text</title>
+    <title>Random Blinking Text</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Oswald:wght@400;700&display=swap');
-
         #blinking-text {
             color: white;
             text-align: center;
-            font-size: 16px;
-            animation: blinker 1s linear infinite;
+            font-size: 40px;
+            font-family: 'Helvetica', sans-serif;
+            font-weight: bold;
+            font-style: italic;
             cursor: pointer;
             text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        #blinking-text:hover {
-            color: #cccccc;
-        }
-
-        @keyframes blinker {
-            50% {
-                opacity: 0;
-            }
+            opacity: 1;
         }
 
         body {
@@ -40,15 +30,15 @@
     <a href="https://www.google.com/search?q=bread" target="_blank" id="blinking-text">ege</a>
     <script>
         const textElement = document.getElementById('blinking-text');
-        const fonts = ["Montserrat", "Roboto", "Open Sans", "Lato", "Oswald", "Arial", "Times New Roman", "Verdana"];
-        let fontIndex = 0;
 
-        function changeFont() {
-            textElement.style.fontFamily = fonts[fontIndex];
-            fontIndex = (fontIndex + 1) % fonts.length;
+        function randomBlink() {
+            const isBlinking = Math.random() < 0.5; // 50% chance to blink
+            textElement.style.opacity = isBlinking ? 0 : 1;
+            const randomInterval = Math.random() * 1000; // Random time between 0 and 1000 milliseconds
+            setTimeout(randomBlink, randomInterval);
         }
 
-        setInterval(changeFont, 2000);
+        randomBlink();
     </script>
 </body>
 </html>
